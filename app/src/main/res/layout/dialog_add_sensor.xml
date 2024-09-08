@@ -1,0 +1,70 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center"
+    android:background="@drawable/dialog_bg"
+    >
+
+
+    <!-- Tytuł dialogu -->
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Sensor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"/>
+
+    <!-- Pole na ID sensora -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/border"
+        android:padding="8dp">
+
+        <!-- Ikona sensora -->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_sensors_24"
+            android:layout_gravity="center_vertical"/>
+
+        <!-- EditText na ID sensora -->
+        <EditText
+            android:id="@+id/etSensorId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/sensor_id"
+            android:inputType="number"
+            android:padding="8dp"
+            android:background="@null"/>
+    </LinearLayout>
+
+    <!-- Przycisk Dodaj -->
+    <Button
+        android:id="@+id/btnAddSensor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_sensor2"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@android:color/black"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textColor="@android:color/black"
+        android:backgroundTint="#D1CFCF"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>

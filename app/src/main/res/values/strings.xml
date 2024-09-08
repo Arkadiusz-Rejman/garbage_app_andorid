@@ -9,4 +9,7 @@
     <string name="addres">Addres</string>
     <string name="name">Name</string>
     <string name="surname">Surname</string>
+    <string name="add_sensor">Add Sensor</string>
+    <string name="sensor_id">Sensor ID</string>
+    <string name="add_sensor2">Add Sensor</string>
 </resources>

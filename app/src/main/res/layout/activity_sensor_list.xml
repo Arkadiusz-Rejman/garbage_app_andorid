@@ -1,0 +1,24 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/kindablue"
+    android:id="@+id/activity_sensor_list"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Tu możesz dodać layout do wyświetlania kafelków z sensorami -->
+
+    <!-- Przycisk dodawania sensora (FloatingActionButton) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonAddSensor"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="50dp"
+        android:tint="@color/white"
+        android:backgroundTint="#817777"
+        android:contentDescription="@string/add_sensor"
+        android:src="@drawable/baseline_add_24"
+        app:tint="@color/kindablue"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

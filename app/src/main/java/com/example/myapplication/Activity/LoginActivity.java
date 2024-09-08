@@ -18,6 +18,7 @@ import com.example.myapplication.Interface.ApiService;
 import com.example.myapplication.R;
 import com.example.myapplication.Interface.RetrofitClient;
 import com.example.myapplication.entity.Client;
+import com.example.myapplication.entity.SessionManager;
 
 import java.io.IOException;
 
@@ -76,6 +77,12 @@ public class LoginActivity extends AppCompatActivity {
                         String responseString = response.body().string();
                         // Obsługa odpowiedzi tekstowej
                         Toast.makeText(LoginActivity.this, responseString, Toast.LENGTH_SHORT).show();
+
+                        SessionManager sessionManager = new SessionManager(LoginActivity.this);
+                        sessionManager.saveUserSession(login,password);
+
+                        Intent intent = new Intent(LoginActivity.this, SensorListActivity.class);
+                        startActivity(intent);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
