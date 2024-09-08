@@ -6,4 +6,7 @@
     <string name="already_an_user_login">Already an user? Login</string>
     <string name="login">Login</string>
     <string name="don_t_have_an_account_sign_up">Don\'t have an account? Sign up.</string>
+    <string name="addres">Addres</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
 </resources>

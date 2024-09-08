@@ -7,8 +7,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="@drawable/waste_collection_concept"
-    tools:context=".SignupActivity">
+    android:background="@drawable/background_1840x2204"
+    tools:context=".Activity.SignupActivity"
+    tools:ignore="ExtraText">
     >
 
     <androidx.cardview.widget.CardView
@@ -39,6 +40,43 @@
                 android:textSize="36sp" />
 
             <EditText
+                android:id="@+id/signup_login"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/border"
+                android:drawableStart="@drawable/baseline_person_24"
+                android:drawablePadding="8dp"
+                android:hint="@string/login"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/signup_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/border"
+                android:drawableStart="@drawable/baseline_lock_24"
+                android:drawablePadding="8dp"
+                android:hint="@string/password"
+                android:inputType="textWebPassword"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/signup_addres"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/border"
+                android:drawableStart="@drawable/baseline_home_work_24"
+                android:drawablePadding="8dp"
+                android:hint="@string/addres"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <EditText
                 android:id="@+id/signup_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -46,20 +84,19 @@
                 android:background="@drawable/border"
                 android:drawableStart="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
-                android:hint="@string/username"
+                android:hint="@string/name"
                 android:padding="8dp"
                 android:textColor="@color/black" />
 
             <EditText
-                android:id="@+id/signup_password"
-                android:inputType="textWebPassword"
+                android:id="@+id/signup_surname"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
                 android:background="@drawable/border"
-                android:drawableStart="@drawable/baseline_password_24"
+                android:drawableStart="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
-                android:hint="@string/password"
+                android:hint="@string/surname"
                 android:padding="8dp"
                 android:textColor="@color/black" />
 

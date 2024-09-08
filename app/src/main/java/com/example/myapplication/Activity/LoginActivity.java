@@ -1,8 +1,7 @@
-package com.example.myapplication;
+package com.example.myapplication.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,6 +13,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.myapplication.Interface.ApiService;
+import com.example.myapplication.R;
+import com.example.myapplication.Interface.RetrofitClient;
+import com.example.myapplication.entity.Client;
 
 import java.io.IOException;
 

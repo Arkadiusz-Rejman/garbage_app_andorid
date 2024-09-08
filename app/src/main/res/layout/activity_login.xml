@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="@drawable/waste_collection_concept"
-    tools:context=".LoginActivity">
+    android:background="@drawable/background_1840x2204"
+    tools:context=".Activity.LoginActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                 android:background="@drawable/border"
                 android:drawableStart="@drawable/baseline_person_24"
                 android:drawablePadding="8dp"
-                android:hint="@string/username"
+                android:hint="@string/login"
                 android:padding="8dp"
                 android:textColor="@color/black" />
 
