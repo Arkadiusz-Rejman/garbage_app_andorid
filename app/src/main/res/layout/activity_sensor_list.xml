@@ -28,4 +28,19 @@
         app:tint="@color/kindablue"
         />
 
+
+    <!-- Przycisk dodawania sensora (FloatingActionButton) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonLogout"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|bottom"
+        android:layout_margin="50dp"
+        android:tint="@color/white"
+        android:backgroundTint="#FFFFFF"
+        android:contentDescription="@string/logout"
+        android:src="@drawable/baseline_logout_24"
+        app:tint="@color/kindablue"
+        />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

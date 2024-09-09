@@ -36,7 +36,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SensorListActivity extends AppCompatActivity {
-    private FloatingActionButton buttonAddSensor;
+    private FloatingActionButton buttonAddSensor, buttonLogout;
     private SessionManager sessionManager;
     private ApiService apiService;
     private RecyclerView recyclerView;
@@ -62,6 +62,13 @@ public class SensorListActivity extends AppCompatActivity {
 
 
         buttonAddSensor = findViewById(R.id.buttonAddSensor);
+        buttonLogout = findViewById(R.id.buttonLogout);
+
+        buttonLogout.setOnClickListener(view -> {
+            sessionManager.logout();
+            finish();
+        });
+
         buttonAddSensor.setOnClickListener(view -> {
             //tu obsługa guzika + na liscie
             showAddSensorDialog();
@@ -148,7 +155,7 @@ public class SensorListActivity extends AppCompatActivity {
             public void onResponse(Call<List<Sensor>> call, Response<List<Sensor>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Sensor> sensors = response.body();
-                    sensorAdapter = new SensorAdapter(sensors);
+                    sensorAdapter = new SensorAdapter(sensors, sessionManager.getUserLogin());
                     recyclerView.setAdapter(sensorAdapter); // Ustawienie adaptera
                     Toast.makeText(SensorListActivity.this, "Found " + sensors.size() + " sensors", Toast.LENGTH_SHORT).show();
                 } else {

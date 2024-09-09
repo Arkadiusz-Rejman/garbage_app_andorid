@@ -12,4 +12,5 @@
     <string name="add_sensor">Add Sensor</string>
     <string name="sensor_id">Sensor ID</string>
     <string name="add_sensor2">Add Sensor</string>
+    <string name="logout">logout</string>
 </resources>

@@ -8,6 +8,7 @@ public class Disposal {
     private boolean isDisposalScheduled;
     private String disposalDate;
     private DisposalType disposalType;
+    private long sensor_id;
 
     private Sensor sensor;
 
@@ -25,6 +26,11 @@ public class Disposal {
     public Disposal(boolean isDisposalScheduled, String disposalDate, DisposalType disposalType) {
         this.isDisposalScheduled = isDisposalScheduled;
         this.disposalDate = disposalDate;
+        this.disposalType = disposalType;
+    }
+
+    public Disposal(long sensor_id, DisposalType disposalType) {
+        this.sensor_id = sensor_id;
         this.disposalType = disposalType;
     }
 

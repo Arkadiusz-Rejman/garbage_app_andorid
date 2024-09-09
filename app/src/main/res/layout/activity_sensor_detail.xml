@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:id="@+id/sensor_detail_activity"
+    >
+
+
+    <!-- Wyświetlanie Sensor ID -->
+    <TextView
+        android:id="@+id/textViewSensorDetailId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Sensor ID:" />
+
+    <!-- Wyświetlanie Sensor Value -->
+    <TextView
+        android:id="@+id/textViewSensorDetailValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="Fullfillment:" />
+
+
+    <!-- Przycisk Cofania -->
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Return"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"/>
+
+    <!-- Przycisk EXTRA -->
+    <Button
+        android:id="@+id/buttonExtraDisposal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Queue extra disposal"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"/>
+
+    <!-- Przycisk BIG -->
+    <Button
+        android:id="@+id/buttonBigDisposal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Queue big disposal"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"/>
+
+    <!-- Przycisk Logout -->
+    <Button
+        android:id="@+id/buttonLogout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"/>
+
+
+
+
+</LinearLayout>

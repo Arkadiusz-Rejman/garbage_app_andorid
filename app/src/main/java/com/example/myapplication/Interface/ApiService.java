@@ -1,6 +1,7 @@
 package com.example.myapplication.Interface;
 
 import com.example.myapplication.entity.Client;
+import com.example.myapplication.entity.Disposal;
 import com.example.myapplication.entity.Sensor;
 
 import java.util.List;
@@ -28,4 +29,7 @@ public interface ApiService {
 
     @GET("/sensors/clientSensors")
     Call<List<Sensor>> getClientSensors(@Query("clientLogin") String clientLogin);
+
+    @POST("/extraDisposals/{sensorId}")
+    Call<Void> saveExtraDisposal(@Body Disposal extraDisposal, @Path("sensorId") Long sensorId);
 }
