@@ -79,7 +79,8 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, responseString, Toast.LENGTH_SHORT).show();
 
                         SessionManager sessionManager = new SessionManager(LoginActivity.this);
-                        sessionManager.saveUserSession(login,password);
+                        //zrobienie pobierania ID klienta przed zapisem :)
+                        sessionManager.saveUserSession(login,login);
 
                         Intent intent = new Intent(LoginActivity.this, SensorListActivity.class);
                         startActivity(intent);

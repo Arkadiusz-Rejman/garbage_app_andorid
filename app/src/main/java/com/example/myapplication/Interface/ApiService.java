@@ -9,6 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
     @POST("/api/clients/login")
@@ -17,8 +18,8 @@ public interface ApiService {
     @POST("/api/clients/register")
     Call<Void> registerClient(@Body Client client);
 
-    @POST("/api/clients/addSensor")
-    Call<Void> addSensorToClient(String sensorId);
+    @POST("/sensors/addSensorToClient")
+    Call<Void> addSensorToClient(@Query("sensorId") String sensorId, @Query("clientLogin") String clientLogin);
 
     @GET("/sensors/{id}")
     Call<Sensor> getSensorById(@Path("id")String sensorId);

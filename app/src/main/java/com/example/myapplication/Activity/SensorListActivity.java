@@ -21,6 +21,7 @@ import com.example.myapplication.Interface.ApiService;
 import com.example.myapplication.Interface.RetrofitClient;
 import com.example.myapplication.R;
 import com.example.myapplication.entity.Sensor;
+import com.example.myapplication.entity.SessionManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.protobuf.Api;
 
@@ -32,6 +33,8 @@ import retrofit2.Response;
 
 public class SensorListActivity extends AppCompatActivity {
     private FloatingActionButton buttonAddSensor;
+    private SessionManager sessionManager;
+    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,40 +47,19 @@ public class SensorListActivity extends AppCompatActivity {
             return insets;
         });
 
+        sessionManager = new SessionManager(this);
+        apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+
+
         buttonAddSensor = findViewById(R.id.buttonAddSensor);
         buttonAddSensor.setOnClickListener(view -> {
-            showAddSensorDialog2();
+            //tu obsługa guzika + na liscie
+            showAddSensorDialog();
         });
     }
 
-    private void addSensorToClient(String sensorId){
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        Call<Void> call = apiService.addSensorToClient(sensorId);
-
-        call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(SensorListActivity.this, "Sensor added successfully", Toast.LENGTH_SHORT).show();
-                    //loadSensors();  // Odświeżamy kafelki z sensorami
-                } else {
-                    Toast.makeText(SensorListActivity.this, "Failed to add sensor", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-                Toast.makeText(SensorListActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("SensorListActivity", Objects.requireNonNull(t.getMessage()));
-            }
-        });
-    }
-
-    private void loadSensors() {
-        // Załaduj listę sensorów zalogowanego klienta i wyświetl kafelki
-        // Implementacja zależna od tego, jak chcesz wyświetlać kafelki (np. RecyclerView, GridLayout itd.)
-    }
-    private void showAddSensorDialog2() {
+    //guzik dodawania na liscie :)
+    private void showAddSensorDialog() {
         // Tworzymy nowy dialog
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_add_sensor);
@@ -90,23 +72,48 @@ public class SensorListActivity extends AppCompatActivity {
         Button btnCancel = dialog.findViewById(R.id.btnCancel);
 
         // Obsługa przycisku Dodaj Sensor
-        btnAddSensor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String sensorId = etSensorId.getText().toString();
-                sendSensorIdToServer(sensorId);
-            }
+        btnAddSensor.setOnClickListener(v -> {
+            String sensorId = etSensorId.getText().toString();
+            //sendSensorIdToServer(sensorId);
+            assignSensorToClient(sensorId);
         });
 
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show(); // Wyświetlamy dialog
     }
+
+
+
+    private void assignSensorToClient(String sensorId){
+        String clientLogin = sessionManager.getUserLogin();
+        apiService.addSensorToClient(sensorId,clientLogin).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(SensorListActivity.this, "Sensor assigned successfully", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(SensorListActivity.this, "Failed to assign sensor" + response.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+                Toast.makeText(SensorListActivity.this, "Fatal Error" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadSensors() {
+        // Załaduj listę sensorów zalogowanego klienta i wyświetl kafelki
+        // Implementacja zależna od tego, jak chcesz wyświetlać kafelki (np. RecyclerView, GridLayout itd.)
+    }
+
+
+
+
+
+
 
     private void sendSensorIdToServer(String sensorId) {
         ApiService service = RetrofitClient.getRetrofitInstance().create(ApiService.class);
@@ -132,5 +139,27 @@ public class SensorListActivity extends AppCompatActivity {
             }
         });
     }
-    }
+    private void addSensorToClient(String sensorId){
+//    ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+//    Call<Void> call = apiService.addSensorToClient(sensorId);
+//
+//    call.enqueue(new Callback<Void>() {
+//        @Override
+//        public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+//            if (response.isSuccessful()) {
+//                Toast.makeText(SensorListActivity.this, "Sensor added successfully", Toast.LENGTH_SHORT).show();
+//                //loadSensors();  // Odświeżamy kafelki z sensorami
+//            } else {
+//                Toast.makeText(SensorListActivity.this, "Failed to add sensor", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//
+//        @Override
+//        public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+//            Toast.makeText(SensorListActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//            Log.e("SensorListActivity", Objects.requireNonNull(t.getMessage()));
+//        }
+//    });
+}
+}
 
