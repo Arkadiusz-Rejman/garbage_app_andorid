@@ -3,6 +3,8 @@ package com.example.myapplication.Interface;
 import com.example.myapplication.entity.Client;
 import com.example.myapplication.entity.Sensor;
 
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -23,4 +25,7 @@ public interface ApiService {
 
     @GET("/sensors/{id}")
     Call<Sensor> getSensorById(@Path("id")String sensorId);
+
+    @GET("/sensors/clientSensors")
+    Call<List<Sensor>> getClientSensors(@Query("clientLogin") String clientLogin);
 }

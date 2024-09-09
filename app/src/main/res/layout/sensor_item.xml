@@ -1,0 +1,27 @@
+<!-- sensor_item.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/rectagle_border"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- Pole z ID sensora -->
+    <TextView
+        android:id="@+id/textViewSensorId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sensor ID: 123"
+        android:textSize="18sp"
+        android:textColor="@android:color/black" />
+
+    <!-- Pole z wartością sensora -->
+    <TextView
+        android:id="@+id/textViewSensorValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Value: 45"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray" />
+</LinearLayout>

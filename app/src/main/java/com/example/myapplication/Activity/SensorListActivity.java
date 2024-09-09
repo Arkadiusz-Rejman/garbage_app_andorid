@@ -16,15 +16,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Interface.ApiService;
 import com.example.myapplication.Interface.RetrofitClient;
 import com.example.myapplication.R;
+import com.example.myapplication.adapter.SensorAdapter;
 import com.example.myapplication.entity.Sensor;
 import com.example.myapplication.entity.SessionManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.protobuf.Api;
 
+import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -35,6 +39,8 @@ public class SensorListActivity extends AppCompatActivity {
     private FloatingActionButton buttonAddSensor;
     private SessionManager sessionManager;
     private ApiService apiService;
+    private RecyclerView recyclerView;
+    private SensorAdapter sensorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +55,9 @@ public class SensorListActivity extends AppCompatActivity {
 
         sessionManager = new SessionManager(this);
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+
+        recyclerView = findViewById(R.id.recyclerViewSensors);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
         buttonAddSensor = findViewById(R.id.buttonAddSensor);
@@ -75,7 +84,8 @@ public class SensorListActivity extends AppCompatActivity {
         btnAddSensor.setOnClickListener(v -> {
             String sensorId = etSensorId.getText().toString();
             //sendSensorIdToServer(sensorId);
-            assignSensorToClient(sensorId);
+            //assignSensorToClient(sensorId);
+            fetchClientSensors();
         });
 
         btnCancel.setOnClickListener(v -> dialog.dismiss());
@@ -103,6 +113,53 @@ public class SensorListActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void fetchClientSensorsX() {
+        String clientLogin = sessionManager.getUserLogin(); // Pobieramy login użytkownika
+
+        apiService.getClientSensors(clientLogin).enqueue(new Callback<List<Sensor>>() {
+            @Override
+            public void onResponse(Call<List<Sensor>> call, Response<List<Sensor>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Sensor> sensors = response.body();
+                    // Tutaj możesz np. zaktualizować widok listy sensorów
+                    Toast.makeText(SensorListActivity.this, "Found " + sensors.size() + " sensors", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SensorListActivity.this, "No sensors found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Sensor>> call, Throwable t) {
+                Toast.makeText(SensorListActivity.this, "Failed to fetch sensors", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void fetchClientSensors() {
+        String clientLogin = sessionManager.getUserLogin(); // Pobieramy login użytkownika
+
+        apiService.getClientSensors(clientLogin).enqueue(new Callback<List<Sensor>>() {
+            @Override
+            public void onResponse(Call<List<Sensor>> call, Response<List<Sensor>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Sensor> sensors = response.body();
+                    sensorAdapter = new SensorAdapter(sensors);
+                    recyclerView.setAdapter(sensorAdapter); // Ustawienie adaptera
+                    Toast.makeText(SensorListActivity.this, "Found " + sensors.size() + " sensors", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SensorListActivity.this, "No sensors found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Sensor>> call, Throwable t) {
+                Toast.makeText(SensorListActivity.this, "Failed to fetch sensors", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 
     private void loadSensors() {
         // Załaduj listę sensorów zalogowanego klienta i wyświetl kafelki
