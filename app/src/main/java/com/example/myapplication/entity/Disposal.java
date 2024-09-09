@@ -10,6 +10,7 @@ public class Disposal {
     private DisposalType disposalType;
     private long sensor_id;
 
+
     private Sensor sensor;
 
     public Disposal() {
@@ -54,6 +55,7 @@ public class Disposal {
         return disposalDate;
     }
 
+
     public void setDisposalDate(String disposalDate) {
         this.disposalDate = disposalDate;
     }
@@ -73,4 +75,5 @@ public class Disposal {
     public void setDisposalType(DisposalType disposalType) {
         this.disposalType = disposalType;
     }
+
 }

@@ -32,4 +32,7 @@ public interface ApiService {
 
     @POST("/extraDisposals/{sensorId}")
     Call<Void> saveExtraDisposal(@Body Disposal extraDisposal, @Path("sensorId") Long sensorId);
+
+    @GET("/disposals/sensor/{sensorId}")
+    Call<List<Disposal>> getDisposalsBySensorId(@Path("sensorId") Long sensorId);
 }

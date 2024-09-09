@@ -61,6 +61,14 @@
         android:layout_gravity="center"
         android:layout_marginTop="32dp"/>
 
+    <!-- Przycisk Myspisosal -->
+    <Button
+        android:id="@+id/buttonMyDisposals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My disposals"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"/>
 
 
 

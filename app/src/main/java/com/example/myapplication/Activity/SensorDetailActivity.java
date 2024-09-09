@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,13 +19,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Interface.ApiService;
 import com.example.myapplication.Interface.RetrofitClient;
 import com.example.myapplication.R;
+import com.example.myapplication.adapter.DisposalAdapter;
 import com.example.myapplication.entity.Disposal;
 import com.example.myapplication.entity.DisposalType;
 import com.example.myapplication.entity.SessionManager;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +40,7 @@ public class SensorDetailActivity extends AppCompatActivity {
     private TextView textViewSensorDetailId;
     private TextView textViewSensorDetailValue;
     private TextView textViewClientLogin;
-    private Button buttonBack,buttonLogout,buttonExtraDisposal,buttonBigDisposal;
+    private Button buttonBack,buttonLogout,buttonExtraDisposal,buttonBigDisposal,buttonMyDisposals;
     SessionManager sessionManager;
     ApiService apiService;
 
@@ -57,6 +63,7 @@ public class SensorDetailActivity extends AppCompatActivity {
         buttonLogout = findViewById(R.id.buttonLogout2);
         buttonExtraDisposal = findViewById(R.id.buttonExtraDisposal);
         buttonBigDisposal = findViewById(R.id.buttonBigDisposal);
+        buttonMyDisposals = findViewById(R.id.buttonMyDisposals);
 
         sessionManager = new SessionManager(this);
         apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
@@ -90,6 +97,7 @@ public class SensorDetailActivity extends AppCompatActivity {
         // Obsługa przycisków dodawania Disposal
         buttonExtraDisposal.setOnClickListener(v -> showDisposalConfirmationDialog(sensorId,EXTRA));
         buttonBigDisposal.setOnClickListener(view -> showDisposalConfirmationDialog(sensorId,BIG));
+        buttonMyDisposals.setOnClickListener(view -> showDisposalsDialog(sensorId));
     }
 
 
@@ -136,6 +144,50 @@ public class SensorDetailActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void showDisposalsDialog(Long sensorId) {
+        // Inicjalizacja dialogu
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_disposal_list, null);
+        builder.setView(dialogView);
+
+        // Pobranie referencji do widoków w dialogu
+        RecyclerView recyclerView = dialogView.findViewById(R.id.recyclerViewDisposals);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        Button buttonClose = dialogView.findViewById(R.id.buttonClose);
+
+        // Stworzenie dialogu
+        AlertDialog dialog = builder.create();
+
+        // Obsługa kliknięcia przycisku zamknięcia
+        buttonClose.setOnClickListener(v -> {
+            dialog.dismiss();  // Zamknięcie dialogu
+        });
+
+        // Pobranie listy Disposal z backendu
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        apiService.getDisposalsBySensorId(sensorId).enqueue(new Callback<List<Disposal>>() {
+            @Override
+            public void onResponse(Call<List<Disposal>> call, Response<List<Disposal>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Disposal> disposals = response.body();
+                    // Ustawienie adaptera z danymi
+                    DisposalAdapter adapter = new DisposalAdapter(disposals);
+                    recyclerView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Disposal>> call, Throwable t) {
+                // Obsługa błędu
+            }
+        });
+
+        // Wyświetlenie dialogu
+        dialog.show();
     }
 
 }
