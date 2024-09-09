@@ -58,6 +58,7 @@ public class SensorListActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerViewSensors);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        fetchClientSensors();
 
 
         buttonAddSensor = findViewById(R.id.buttonAddSensor);
@@ -83,12 +84,15 @@ public class SensorListActivity extends AppCompatActivity {
         // Obsługa przycisku Dodaj Sensor
         btnAddSensor.setOnClickListener(v -> {
             String sensorId = etSensorId.getText().toString();
-            //sendSensorIdToServer(sensorId);
-            //assignSensorToClient(sensorId);
-            fetchClientSensors();
+            assignSensorToClient(sensorId);
+
         });
 
-        btnCancel.setOnClickListener(v -> dialog.dismiss());
+        btnCancel.setOnClickListener(v -> {
+                    dialog.dismiss();
+                    fetchClientSensors();
+                }
+        );
 
         dialog.show(); // Wyświetlamy dialog
     }

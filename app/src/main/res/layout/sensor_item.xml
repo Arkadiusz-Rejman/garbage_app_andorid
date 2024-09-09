@@ -5,23 +5,26 @@
     android:orientation="vertical"
     android:background="@drawable/rectagle_border"
     android:padding="16dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="11dp">
 
     <!-- Pole z ID sensora -->
     <TextView
+
         android:id="@+id/textViewSensorId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sensor ID: 123"
-        android:textSize="18sp"
+        android:textSize="26dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp"
         android:textColor="@android:color/black" />
 
     <!-- Pole z wartością sensora -->
     <TextView
         android:id="@+id/textViewSensorValue"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Value: 45"
-        android:textSize="16sp"
-        android:textColor="@android:color/darker_gray" />
+        android:textSize="24sp"
+        android:textColor="@color/kindablue" />
 </LinearLayout>
