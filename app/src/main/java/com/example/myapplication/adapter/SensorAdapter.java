@@ -42,7 +42,7 @@ public class SensorAdapter extends RecyclerView.Adapter<SensorAdapter.SensorView
     public void onBindViewHolder(@NonNull SensorViewHolder holder, int position) {
         Sensor sensor = sensorList.get(position);
         holder.textViewSensorId.setText("Sensor ID: " + sensor.getId());
-        holder.textViewSensorValue.setText("Value: " + sensor.getSensorValue()+"%");
+        holder.textViewSensorValue.setText("Fullfilment: " + sensor.getSensorValue()+"%");
         // Ustawienie onClickListener na kafelek
         holder.itemView.setOnClickListener(v -> {
             // Przekazanie danych do nowego Activity

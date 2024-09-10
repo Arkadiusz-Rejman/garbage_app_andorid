@@ -1,75 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:id="@+id/sensor_detail_activity"
-    >
+    android:padding="30dp"
+    android:background="#2C2C2C"
+    android:id="@+id/sensor_detail_activity">
 
-
-    <!-- Wyświetlanie Sensor ID -->
-    <TextView
-        android:id="@+id/textViewSensorDetailId"
-        android:layout_width="wrap_content"
+    <!-- CardView dla obramowania i zaokrąglonych rogów -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:text="Sensor ID:" />
-
-    <!-- Wyświetlanie Sensor Value -->
-    <TextView
-        android:id="@+id/textViewSensorDetailValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="Fullfillment:" />
-
-
-    <!-- Przycisk Cofania -->
-    <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Return"
         android:layout_gravity="center"
-        android:layout_marginTop="32dp"/>
+        android:padding="24dp"
+        android:backgroundTint="@android:color/white"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="8dp"
+        android:layout_margin="36dp"
+        >
 
-    <!-- Przycisk EXTRA -->
-    <Button
-        android:id="@+id/buttonExtraDisposal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Queue extra disposal"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"/>
+        <!-- Główna część layoutu wewnątrz CardView -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:padding="24dp">
 
-    <!-- Przycisk BIG -->
-    <Button
-        android:id="@+id/buttonBigDisposal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Queue big disposal"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"/>
+            <!-- Tytuł -->
+            <TextView
+                android:id="@+id/dialogTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sensor Details"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center"
+                android:paddingBottom="16dp"
+                android:layout_marginTop="20dp"
+                />
 
-    <!-- Przycisk Logout -->
-    <Button
-        android:id="@+id/buttonLogout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"/>
+            <!-- Wyświetlanie Sensor ID -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:background="@drawable/edit_text_bacground"
+                android:padding="12dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp"
+                >
 
-    <!-- Przycisk Myspisosal -->
-    <Button
-        android:id="@+id/buttonMyDisposals"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My disposals"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"/>
+                <!-- Ikona dla Sensor ID -->
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/baseline_android_24" />
+
+                <!-- TextView dla wyświetlania Sensor ID -->
+                <TextView
+                    android:id="@+id/textViewSensorDetailId"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sensor ID"
+                    android:paddingStart="8dp"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <!-- Wyświetlanie Sensor Value -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:background="@drawable/edit_text_bacground"
+                android:padding="12dp"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+
+                <!-- Ikona dla Sensor Value -->
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/baseline_restore_from_trash_24" />
+
+                <!-- TextView dla wyświetlania Sensor Value -->
+                <TextView
+                    android:id="@+id/textViewSensorDetailValue"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Fullfillment"
+                    android:paddingStart="8dp"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <!-- Przycisk Queue Extra Disposal -->
+            <Button
+                android:id="@+id/buttonExtraDisposal"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Queue extra disposal"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/kindablue"
+                android:layout_marginTop="2dp" />
+
+            <!-- Przycisk Queue Big Disposal -->
+            <Button
+                android:id="@+id/buttonBigDisposal"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Queue big disposal"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/kindablue"
+                android:layout_marginTop="2dp" />
 
 
+            <!-- Przycisk My Disposals -->
+            <Button
+                android:id="@+id/buttonMyDisposals"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="My disposals"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/kindablue"
+                android:layout_marginTop="2dp" />
+
+            <!-- Przycisk Return -->
+            <Button
+                android:id="@+id/buttonBack"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Return"
+                android:textColor="@android:color/black"
+                android:backgroundTint="#D1CFCF"
+                android:layout_marginTop="5dp" />
+
+            <!-- Przycisk Logout -->
+            <Button
+                android:id="@+id/buttonLogout2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Logout"
+                android:textColor="@android:color/black"
+                android:backgroundTint="#D1CFCF"
+                android:layout_marginTop="5dp" />
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
