@@ -101,26 +101,46 @@ public class SensorDetailActivity extends AppCompatActivity {
     }
 
 
-    // Metoda do wyświetlenia dialogu potwierdzenia
     private void showDisposalConfirmationDialog(Long sensorId, DisposalType disposalType) {
-        new AlertDialog.Builder(this)
-                .setTitle("Confirm Disposal")
-                .setMessage("Do you want to create a disposal for Sensor ID: " + sensorId + "?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Tworzenie obiektu Disposal i wysyłanie do backendu
-                        createAndSendDisposal(sensorId,disposalType);
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Zamknięcie dialogu
-                        dialog.dismiss();
-                    }
-                })
-                .show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+
+        // Użycie niestandardowego layoutu
+        View dialogView = inflater.inflate(R.layout.custom_disposal_dialog, null);
+        builder.setView(dialogView);
+
+        // Pobranie referencji do elementów interfejsu
+        TextView title = dialogView.findViewById(R.id.dialogTitle);
+        TextView message = dialogView.findViewById(R.id.dialogMessage);
+        Button positiveButton = dialogView.findViewById(R.id.buttonYes);
+        Button negativeButton = dialogView.findViewById(R.id.buttonNo);
+
+        // Ustawianie tekstu dla tytułu i wiadomości
+        title.setText("Confirm Disposal");
+        message.setText("Do you want to create a disposal for Sensor ID: " + sensorId + "?");
+
+        // Tworzenie i wyświetlanie dialogu
+        AlertDialog dialog = builder.create();
+
+        // Ustawienie działania dla przycisku "Yes"
+        positiveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAndSendDisposal(sensorId, disposalType);
+                dialog.dismiss(); // Zamknięcie dialogu po zatwierdzeniu
+            }
+        });
+
+        // Ustawienie działania dla przycisku "No"
+        negativeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss(); // Zamknięcie dialogu po odrzuceniu
+            }
+        });
+
+        // Wyświetlenie dialogu
+        dialog.show();
     }
 
 
@@ -131,7 +151,7 @@ public class SensorDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                   // Toast.makeText(SensorDetailActivity.this, "Disposal saved successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SensorDetailActivity.this, "Disposal saved successfully!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(SensorDetailActivity.this, "Failed to save disposal.", Toast.LENGTH_SHORT).show();
                 }
