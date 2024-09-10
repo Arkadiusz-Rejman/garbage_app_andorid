@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                         assert response.body() != null;
                         String responseString = response.body().string();
                         // Obsługa odpowiedzi tekstowej
-                        Toast.makeText(LoginActivity.this, responseString, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LoginActivity.this, responseString, Toast.LENGTH_SHORT).show();
 
                         SessionManager sessionManager = new SessionManager(LoginActivity.this);
                         //zrobienie pobierania ID klienta przed zapisem :)

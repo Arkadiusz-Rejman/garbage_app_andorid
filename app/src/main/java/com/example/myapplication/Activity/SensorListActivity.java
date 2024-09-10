@@ -112,7 +112,7 @@ public class SensorListActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(SensorListActivity.this, "Sensor assigned successfully", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SensorListActivity.this, "Sensor assigned successfully", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(SensorListActivity.this, "Failed to assign sensor" + response.toString(), Toast.LENGTH_SHORT).show();
                 }
@@ -134,7 +134,7 @@ public class SensorListActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Sensor> sensors = response.body();
                     // Tutaj możesz np. zaktualizować widok listy sensorów
-                    Toast.makeText(SensorListActivity.this, "Found " + sensors.size() + " sensors", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SensorListActivity.this, "Found " + sensors.size() + " sensors", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(SensorListActivity.this, "No sensors found", Toast.LENGTH_SHORT).show();
                 }
@@ -157,7 +157,7 @@ public class SensorListActivity extends AppCompatActivity {
                     List<Sensor> sensors = response.body();
                     sensorAdapter = new SensorAdapter(sensors, sessionManager.getUserLogin());
                     recyclerView.setAdapter(sensorAdapter); // Ustawienie adaptera
-                    Toast.makeText(SensorListActivity.this, "Found " + sensors.size() + " sensors", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(SensorListActivity.this, "Found " + sensors.size() + " sensors", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(SensorListActivity.this, "No sensors found", Toast.LENGTH_SHORT).show();
                 }
@@ -193,7 +193,7 @@ public class SensorListActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     // Sensor istnieje, otrzymujemy dane sensora
                     Sensor sensor = response.body();
-                    Toast.makeText(SensorListActivity.this, "Sensor found: " + sensor.getId(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(SensorListActivity.this, "Sensor found: " + sensor.getId(), Toast.LENGTH_SHORT).show();
 
                 } else {
                     Toast.makeText(SensorListActivity.this, "Sensor not found", Toast.LENGTH_SHORT).show();

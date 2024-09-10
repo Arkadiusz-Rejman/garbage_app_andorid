@@ -92,7 +92,7 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(SignupActivity.this, "User registered succesfully!", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(SignupActivity.this, "User registered succesfully!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(SignupActivity.this, "Registartion failed: " + response.message(), Toast.LENGTH_SHORT).show();
                 }

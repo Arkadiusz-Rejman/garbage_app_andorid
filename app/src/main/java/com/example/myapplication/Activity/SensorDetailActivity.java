@@ -131,7 +131,7 @@ public class SensorDetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(SensorDetailActivity.this, "Disposal saved successfully!", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(SensorDetailActivity.this, "Disposal saved successfully!", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(SensorDetailActivity.this, "Failed to save disposal.", Toast.LENGTH_SHORT).show();
                 }
